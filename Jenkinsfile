@@ -17,9 +17,9 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
-              dir('backend'){
-                sh 'npm install' 
-              }
+                dir('backend') {
+                    sh 'npm install' 
+                }
             }
         }
 
@@ -31,6 +31,17 @@ pipeline {
                 }
             }
         }
+
+        // Optional: Add a Build stage if you need to build the backend
+        stage('Build') {
+            steps {
+                echo 'Building backend...'
+                dir('backend') {
+                    sh 'npm run build' // Add your build command here if applicable
+                }
+            }
+        }
+    }
 
     post {
         success {
